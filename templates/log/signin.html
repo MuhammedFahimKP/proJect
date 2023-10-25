@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -82,7 +83,7 @@
           <button  id="submitbutton" class="btn btn-primary btn-block" type="submit" style="height: 80%;">
             Sign Up
           </button>
-          <a href="#" class="btn btn-primary btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a>
+          <a href="{% provider_login_url 'google' %}" class="btn btn-primary btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a>
         </div>
         <div class="mt-1">
           <div class="form-check">

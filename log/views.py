@@ -114,7 +114,7 @@ class SigninView(View):
 
         print(user)
 
-        return render(request,'account/login.html',context)
+        return render(request,'log/signin.html',context)
     
 
 
