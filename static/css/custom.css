@@ -1,0 +1,7 @@
+#MyButton{
+  background-color: #59ab6e;
+  border-color: #59ab6e;
+}
+#MyButton:focus{
+  box-shadow: none;
+}
