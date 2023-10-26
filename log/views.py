@@ -45,8 +45,6 @@ class SignupView(View):
             EmailThread(email=email,req=request,user=user).start()
             sweetify.sweetalert(request,icon="success",text="To activate account",title="Check Mail",timer='5000')
             context['res'] = 'sucess account created activate your account using the link send to the mail'
-           
-
         return render(request,'log/signup.html',context)
     
     
