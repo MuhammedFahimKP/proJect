@@ -1,13 +1,12 @@
 from django.db import models
-
+from django.urls import reverse
+from log.models import MyUser
 class Category(models.Model):
     
 
-    """ 
-    
+    """         
       Category  models slugfiled only for url routing  
-
-     
+  
     """
 
     cat_name = models.CharField(max_length=200,unique=True)
@@ -18,9 +17,8 @@ class Category(models.Model):
         return f"{self.cat_name}"
     
 
-
     def get_url(self):
-        return f"{self.slug}"
+        return reverse('products_by_category',args=[self.slug])
     
 
    
@@ -31,11 +29,7 @@ class Category(models.Model):
 
 
 
-    # def getImg(self):
-    #     if self.cat_img:
-    #         return self.cat_img
-    #     else:
-    #         return  "C:\Users\fahim\OneDrive\Desktop\ecommerce_django-main\static\img\4-2-jacket-free-download-png.png"  
+   
 
     
     class Meta:
@@ -103,3 +97,14 @@ class Product(models.Model):
      class Meta:
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
+
+
+
+# class CartItem(models.Model):
+#       product = models.ForeignKey(Product,on_delete=models.CASCADE)
+#       qauntity = models.PositiveIntegerField(default=0)
+
+# class Cart(models.Model):
+#       user = models.ForeignKey(MyUser,on_delete=models.CASCADE)
+#       cartitems = models.ForeignKey(CartItem,on_delete=models.CASCADE)
+

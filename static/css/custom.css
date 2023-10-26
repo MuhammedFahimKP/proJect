@@ -5,3 +5,6 @@
 #MyButton:focus{
   box-shadow: none;
 }
+.sw-wide {
+  width: 300px; /* Customize the width as needed */
+}

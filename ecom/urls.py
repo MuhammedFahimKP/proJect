@@ -21,9 +21,10 @@ from django.conf import settings
 from .views import Home
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admi/', admin.site.urls),
     path('',Home.as_view(),name="home"),
     path('auth/',include('log.urls')),
     path('accounts/', include('allauth.urls')),
     path('shop/',include('shop.urls')),
+    path('admin/',include('manager.urls'))
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

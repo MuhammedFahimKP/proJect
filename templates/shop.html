@@ -16,7 +16,7 @@
                 <ul class="list-unstyled templatemo-accordion">
                    <a class="dropdown-item" href="{% url 'shop' %}">All Products</a>
                    {% for c in categories %}
-                   <a class="dropdown-item" href="">{{c.cat_name}}</a>
+                   <a class="dropdown-item" href="{{c.get_url}}">{{c.cat_name}}</a>
                    {% endfor %} 
                     
                 </ul>
@@ -64,7 +64,7 @@
                             <div class="card-body">
                                 <a href="shop-single.html" class="h3 text-decoration-none">{{p.name}}</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                    <li>M/L/X/XL</li>
+                                    {% comment %} <li>M/L/X/XL</li> {% endcomment %}
                                     <li class="pt-2">
                                         <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
                                         <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
@@ -211,3 +211,4 @@
     </section>
     <!--End Brands-->
 {% endblock content %}
+

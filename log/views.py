@@ -10,7 +10,7 @@ from django.contrib.auth.tokens import default_token_generator
 from .emailthread import EmailThread
 from django.http import HttpResponse
 from django.conf import settings
-import requests
+import sweetify
 
 
 
@@ -43,6 +43,7 @@ class SignupView(View):
             user  = MyUser.objects.create(email=email,first_name=fname,last_name=lname,password=password,is_active=False)
             user.save()
             EmailThread(email=email,req=request,user=user).start()
+            sweetify.sweetalert(request,icon="success",text="To activate account",title="Check Mail",timer='5000')
             context['res'] = 'sucess account created activate your account using the link send to the mail'
            
 

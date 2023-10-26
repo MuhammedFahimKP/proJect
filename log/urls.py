@@ -12,5 +12,4 @@ urlpatterns = [
         views.SignoutView.as_view(),
         name='Signout'
     )
-  
 ]

@@ -46,12 +46,13 @@ INSTALLED_APPS = [
 
     'shop',
     'log',
-
+    'manager',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-       
+
+    'sweetify',
 ]
 
 MIDDLEWARE = [
@@ -86,6 +87,7 @@ TEMPLATES = [
         },
     },
 ]
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 
 WSGI_APPLICATION = 'ecom.wsgi.application'
 

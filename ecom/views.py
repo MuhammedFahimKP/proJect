@@ -1,30 +1,28 @@
-from typing import Any
-from django.views import generic
-from django.shortcuts import redirect
+
+from django.views import View
+from django.shortcuts import render
 from django.urls import reverse
-from log.models import MyUser
-from django.contrib.auth import login
-from django.conf import settings
-from django.contrib import  messages
 from shop.models import Category
-import requests
+import sweetify
 
 
 
-class Home(generic.TemplateView):
+class Home(View):
+
     
-    template_name = "home.html"
-    
 
 
-    def get_context_data(self, *args,**kwargs) -> dict[str, Any]:
+    def get(self,request):
         
-        context = super(Home, self).get_context_data(*args,**kwargs)
-        context['cat'] = Category.objects.all()
+        
+        context={
+            'cat':Category.objects.all()
+        }
 
-        return context
+        if request.user.is_authenticated:
+            sweetify.sweetalert(request,icon="success",text=f"{request.user.email}",customclass='sw-wide',title="authenticated as",timer='3000',position='top-end',toast=True)
+
+        return render(request,"home.html",context)
     
 
 
-# def Home(request):
-#     return render(request,'base.html')
