@@ -1,0 +1,57 @@
+{% extends "manager/index.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title fw-semibold mb-4">Users</h5>
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">  </th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Date Joined</th>
+              <th scope="col">Last Login</th>
+              <th scope="col">Status</th>
+             
+              <th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+              <tr>
+                <th scope="row">{{user.id}}</th>
+                <td>
+                  <img src="{% static "img/user.png" %}" alt="" width="35" height="35" class="rounded-circle">
+                </td>
+                <td>{{user.first_name}} {% if user.last_name %}{{user.last_name}}{% endif %}</td>
+                <td>{{user.email}}</td>
+                <td>
+                  {{user.date_joined}}
+                </td>
+                <td>
+                  {{user.last_login}}
+                </td>
+              
+                <td>
+                  {% if user.is_active %}
+                    <button type="button" class="btn btn-danger" style="background-color:green;">Block</button>
+                  {% else %}
+                  <button type="button" class="btn btn-success">Un Block</button>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>  
+
+{% endblock content %}

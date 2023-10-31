@@ -131,5 +131,11 @@ class SignoutView(View):
         return redirect('home')
 
 
+class AccountView(View):
+
+    def get(self,request):
+        return render(request,'userview.html')
+
+
 
 

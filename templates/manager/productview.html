@@ -3,36 +3,55 @@
 <div class="container-fluid">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title fw-semibold mb-4 ">Product</h5>
+
+        <div class="d-flex justify-content-between">
+
+          <h5 class="card-title fw-semibold mb-4 ">Product</h5>
+
+          <a href="{% url "addprd" %}" class="btn btn-success m-1">Add a new Product </a>
+
+        </div>
+
+       
+        <br>
+        <div class="row">
+          {% for product in products %}
+          <div class="col-md-4">
+            <div class="card mt-4">
+                <!-- Card image -->
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                  <img class="border rounded w-100 object-fit-cover" src="{{product.img.url}}">
+                  <!-- List group -->
+                  <ul class="list-group list-group-flush mt-2">
+                    <li class="list-group-item">{{product.name}}</li>
+                    <li class="list-group-item">{{product.Category}}</li>
+                    <li class="list-group-item">  <i class="ti ti-tick"></i> {{product.Brand}}</li>
+                    <li class="list-group-item">MRP {{product.price}}</li>
+                    <li class="list-group-item"> {{product.stocks}} Stocks </li>
+                    
+                  </ul>
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                  <h4 class="font-weight-normal mt-3"></h4>
+                  <p class="card-text mb-4"></p>
+                  
+            
+                  <div class="d-flex">
+                    <a class="btn btn-danger" href="#" style="background-color:red;">Delete</a>
+                    <a class="btn btn-success ms-2" href="#">Edit</a>
+                  </div>
+                </div>
+                
+            </div>
+          </div>  
+          {% endfor %}
+          </div>  
         
-        <div class="card">
-          <div class="card-body p-4">
-            <button type="button" class="btn btn-primary m-1">Primary</button>
-            <button type="button" class="btn btn-secondary m-1">Secondary</button>
-            <button type="button" class="btn btn-success m-1">Success</button>
-            <button type="button" class="btn btn-danger m-1">Danger</button>
-            <button type="button" class="btn btn-warning m-1">Warning</button>
-            <button type="button" class="btn btn-info m-1">Info</button>
-            <button type="button" class="btn btn-light m-1">Light</button>
-            <button type="button" class="btn btn-dark m-1">Dark</button>
-            <button type="button" class="btn btn-link m-1">Link</button>
-          </div>
-        </div>
-        <h5 class="card-title fw-semibold mb-4">Outline buttons</h5>
-        <div class="card mb-0">
-          <div class="card-body p-4">
-            <button type="button" class="btn btn-outline-primary m-1">Primary</button>
-            <button type="button" class="btn btn-outline-secondary m-1">Secondary</button>
-            <button type="button" class="btn btn-outline-success m-1">Success</button>
-            <button type="button" class="btn btn-outline-danger m-1">Danger</button>
-            <button type="button" class="btn btn-outline-warning m-1">Warning</button>
-            <button type="button" class="btn btn-outline-info m-1">Info</button>
-            <button type="button" class="btn btn-outline-light m-1">Light</button>
-            <button type="button" class="btn btn-outline-dark m-1">Dark</button>
-            <button type="button" class="btn btn-outline-link m-1">Link</button>
-          </div>
-        </div>
-      </div>
-    </div>
+      </div> 
+    </div>    
 </div>
+
 {% endblock content %}
+
+

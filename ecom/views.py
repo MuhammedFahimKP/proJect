@@ -20,7 +20,7 @@ class Home(View):
         }
 
         if request.user.is_authenticated:
-            sweetify.sweetalert(request,icon="success",text=f"{request.user.email.split('@')[0]}",customclass='sw-wide',title="authenticated as",timer='3000',position='top-end',toast=True)
+            sweetify.sweetalert(request,icon="success",text=f"{request.user.email.split('@')[0]}",title="authenticated as",timer='3000',position='top-end',toast=True)
 
         return render(request,"home.html",context)
     
