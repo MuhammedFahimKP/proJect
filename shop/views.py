@@ -115,3 +115,12 @@ class DeleteCart(View):
             cartitem.delete()
             sweetify.sweetalert(request,icon="success",text=f"product removed from cart",title="Success",timer='3000',position='top-end',toast=True)
             return redirect('cart')      
+        
+
+
+# class WhishListView(View):
+      
+#       def get(self,requst):
+#             return render(self.request,'cart.html')
+            
+              
