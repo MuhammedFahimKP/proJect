@@ -5,71 +5,68 @@
 <br> 
 
 
-<div class="container align-items-center justify-content-center my-auto mx-auto">
+<div class="container align-items-center justify-content-center" style="height :70vh;">
   
 
  
-<div class="row">
-  <div class="col-sm-10">
-    {% if request.user %}
-      
-       <h3> <i class="fa fa-fw fa-user text-dark mr-3"></i>{{ request.user.email }}</h3>
-    {% endif %}
+  <div class="row mx-auto d-flex justify-content-center align-item-center ">
+    <div class="col-sm-8 mx-auto d-flex  text-align-center">
+      <div class="col-sm-7 mx-auto">
+        <h2 class="h2">Hi,{{request.user.first_name}}</h2>
+      </div>
+      <div class="col-sm-1 mx-auto">
+        <a href="#" class="btn btn-primary">Logout</a>
+      </div>
+    </div>
+    
   </div>
-  <div class="col-sm-2">
-    <a href="#" class="btn btn-primary">Logut </a>
-  </div>
+  <div class="row mx-auto d-flex justify-content-center align-item-center mt-4">
+      <div class="col-sm-3">
+        <div class="card">
+          <a href="{% url 'amdin' %}"  class="card-body d-flex  justify-content-start align-items-center  text-dark nav-link ">
+             
+            <h5 class="h2 mr-5"><i class="fa fa-fw fa-box text-dark" style="color:#699BF7 !important;"></i></h5>
+            <p class="h2 ms-2" style="font-weight:500 !important; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Orders  </p>
+           
+          </a>  
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card">
+          <a href="{% url 'amdin' %}"  class="card-body d-flex  justify-content-start align-items-center  text-dark nav-link ">
+             
+            <h5 class="h2 mr-5"><i class="fa fa-address-card text-dark" style="color:#4ECB71 !important;"></i></h5>
+            <p class="h2 ms-2" style="font-weight:500 !important; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Profile</p>
+           
+          </a> 
+        </div>
+      </div>
+    </div>
+
+    <div class="row mx-auto d-flex justify-content-center align-item-center mb-5">
+      <div class="col-sm-3">
+        <div class="card">
+          <a href="{% url 'amdin' %}"  class="card-body d-flex  justify-content-start align-items-center  text-dark nav-link ">
+             
+            <h5 class="h2 mr-5"><i class="fa fa-lock" style="color:#FFD233 !important;"></i></h5>
+            <p class="h2 ms-2" style="font-weight:500 !important; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Passwords</p>
+           
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card">
+          <a href="{% url 'amdin' %}"  class="card-body d-flex  justify-content-start align-items-center text-dark nav-link ">
+             
+            <h5 class="h2 mr-5"><i class="fa fa-location-arrow" aria-hidden="true" style="color:#9747FF !important ;"></i></h5>
+            <p class="h2 ms-2" style="font-weight:500 !important; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Address</p>
+           
+          </a>
+        </div>
+      </div>
+    </div>
+    
+
+   
 </div>
-
- <br>
-
-  
-
-  <div class="row mx-auto  ">
-    <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br>
-
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<br>
-
 {% endblock content %}

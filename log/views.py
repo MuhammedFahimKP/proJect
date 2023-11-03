@@ -1,13 +1,15 @@
+from django.forms.models import BaseModelForm
 from django.shortcuts import render,redirect
-from django.urls import reverse
-from django.views import View
+from django.urls import reverse,reverse_lazy
+from django.views import View,generic
 from .models import MyUser
+from .forms import AddressCreationForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
-from .emailthread import EmailThread
+from .emailthread import EmailThread 
 from django.http import HttpResponse
 from django.conf import settings
 import sweetify
@@ -117,10 +119,10 @@ class SigninView(View):
     
 
 
-class AccountView(View):
+# class AccountView(View):
 
-    def get(self,reqeust):
-        return render(reqeust,'log/account.html')
+#     def get(self,reqeust):
+#         return render(reqeust,'log/account.html')
     
 
 
@@ -134,8 +136,30 @@ class SignoutView(View):
 class AccountView(View):
 
     def get(self,request):
-        return render(request,'userview.html')
+        return render(request,'log/account.html')
+
+   
+
+
+class AddressCreateView(generic.CreateView):
+
+    form_class    = AddressCreationForm
+    template_name = "addresscreate.html"
+    success_url   = reverse_lazy('create-address')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        sweetify.sweetalert(self.request,icon="success",text=f"Address added",title="Done",timer='3000',position='top-end',toast=True)
+        return super().form_valid(form)
+    
+
+    def form_invalid(self, form):
+        sweetify.sweetalert(self.request,icon="error",text=f"Give a proper Address ",title="Failed",timer='3000',position='top-end',toast=True)
+        return super().form_invalid(form)
+    
 
 
 
-
+class AdrressView(generic.ListView):
+    template_name = "address"
+    

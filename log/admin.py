@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import MyUser
+from .models import MyUser,Addresses
+
 
 from django.contrib.auth.admin import UserAdmin
 
@@ -39,3 +40,4 @@ class MyUserAdminConf(UserAdmin):
 
 
 admin.site.register(MyUser,MyUserAdminConf)
+admin.site.register(Addresses)

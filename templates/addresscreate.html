@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container align-items-center justify-content-center my-auto mx-auto">
+
+  <form method="post" class="col-sm-8 bg-white border rounded-5  p-5  mt-5 mb-5"style=""> 
+    <h1 class="h3">Address</h1> 
+    {% csrf_token %}
+    <div class="form-row d-flex mb-3" style="">
+      <div class="form-group col-sm-6 mr-5">
+        {{form.city}}
+      </div>
+      <div class="form-group col-sm-6">
+        {{form.landmark}}
+      </div>
+
+      
+    </div>
+   
+    <div class="form-row mb-5">
+      <div class="form-group">
+        <label for="inputAddress">State</label>
+        {{form.state}}
+      </div>
+    </div>
+    <div class="form-row d-flex mb-3">
+      <div class="form-group col-sm-6">
+        
+        {{form.phone_no}}
+      </div>
+      <div class="form-group col-sm-6">
+        
+        {{form.alter_phone_no}}
+      </div>
+    </div>  
+    <div class="form-row mb-3">
+      <div class="form-group">
+        <label for="inputAddress"></label>
+        {{form.pin_code}}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+
+
+</div>
+
+{% endblock content %}

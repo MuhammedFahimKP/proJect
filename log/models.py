@@ -62,6 +62,41 @@ class MyUser(AbstractBaseUser,PermissionsMixin):
 
    
 
+state_choices = [
 
+      ("KR","Kerala"),
+      ("KA","Karnataka"),
+      ("TN","TamilNadu")
+]
+
+
+
+
+
+    # def __str__(self):
+    #     return f"{self.user.first_name}  {self.state}" 
+    
+    
+
+
+
+class Addresses(models.Model):
+
+
+    """
+    
+    address model for the users
+
+    
+    """
+
+    user            = models.ForeignKey(MyUser,on_delete= models.CASCADE,verbose_name="Customers")
+    pin_code        = models.CharField(max_length=6,verbose_name="pincode" )
+    city            = models.CharField(max_length=100)
+    state           = models.CharField(choices=state_choices,max_length=50)
+    place           = models.CharField(max_length=100)
+    landmark        = models.CharField(max_length=100)
+    phone_no        = models.CharField(max_length=10,verbose_name="phone no")
+    alter_phone_no  = models.CharField(max_length=10,verbose_name="alternate phone no")
 
 
