@@ -69,15 +69,26 @@ class CartView(View):
                         cart = None
 
                   cartitems = CartItem.objects.filter(cart=cart) if cart else None      
-                  cart_count = cartitems.count() if cartitems else 0     
-                  
+                  cart_count = cartitems.count() if cartitems else 0
+
+     
+                  total = 0
+                  items = 0
                   if  cart_count == 0 or  not cart:
                         return render(request,"emptycart.html")
                   
+                  else:
+                        for item in cartitems:
+                              total += item.total_price
+                              items += item.qauntity 
+                              
+                  
                   context={
                         'cartitem':cartitems,
-                        'cart_count':cart_count
-                  }
+                        'cart_count':cart_count,
+                        'total':total if total else None,
+                        'items':items if items else None,
+                   }
                   return render(request,"cart.html",context)
             else:
                 return redirect("/")                  

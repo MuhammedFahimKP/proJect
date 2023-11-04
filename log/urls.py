@@ -13,5 +13,7 @@ urlpatterns = [
         name='Signout'
     ),
     path('account/',views.AccountView.as_view(),name="accounts"),
-    path('address/',views.AddressCreateView.as_view(),name="create-address")
+    path('address/create',views.AddressCreateView.as_view(),name="create-address"),
+    path('address/',views.AddressView.as_view(),name="address"),
+    path('deleteaddress/<int:pk>',views.AddressDeleteView.as_view(),name="delete-address")
 ]

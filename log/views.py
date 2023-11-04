@@ -2,7 +2,7 @@ from django.forms.models import BaseModelForm
 from django.shortcuts import render,redirect
 from django.urls import reverse,reverse_lazy
 from django.views import View,generic
-from .models import MyUser
+from .models import MyUser,Addresses
 from .forms import AddressCreationForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
@@ -160,6 +160,34 @@ class AddressCreateView(generic.CreateView):
 
 
 
-class AdrressView(generic.ListView):
-    template_name = "address"
+class AddressView(generic.ListView):
+    model               = Addresses 
+    template_name       = "addressview.html"
+    context_object_name = 'objects'
+
+
+    def get_queryset(self): 
+        return Addresses.objects.filter(user=self.request.user)
+
+
+class AddressDeleteView(generic.DeleteView):
+
+    model         = Addresses
+    success_url   = reverse_lazy('address')
+    template_name = "add_delete_conf .html"
+    items_to_delete = []
+
+    def delete(self,*args, **kwargs):
+
+        try:
+            address = self.get_object()
+            address.delete()
+            sweetify.sweetalert(self.request,icon="success",text=f"Address Deleted",title="Done",timer='3000',position='top-end',toast=True)
+        except :
+            sweetify.sweetalert(self.request,icon="success",text=f"there is no address",title="failed",timer='3000',position='top-end',toast=True)
+
+        super().delete(self.request,*args,**kwargs)      
+
+
+
     

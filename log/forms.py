@@ -20,6 +20,7 @@ class AddressCreationForm(forms.ModelForm):
         placeholders = {
             'city':'City',
             'state':'State',
+            'place' : 'Place',
             'landmark':'Landmark',
             'pin_code':'Pincode',
             'phone_no':'Phone No',

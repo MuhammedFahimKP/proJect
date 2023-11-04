@@ -64,18 +64,15 @@ class MyUser(AbstractBaseUser,PermissionsMixin):
 
 state_choices = [
 
-      ("KR","Kerala"),
-      ("KA","Karnataka"),
-      ("TN","TamilNadu")
+      ("Kerala","Kerala"),
+      ("Karnataka","Karnataka"),
+      ("Tamilnadu","TamilNadu")
 ]
 
 
 
 
 
-    # def __str__(self):
-    #     return f"{self.user.first_name}  {self.state}" 
-    
     
 
 
