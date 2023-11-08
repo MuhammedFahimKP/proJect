@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
+<style>
+  a{
+    text-decoration: none !important ;
+  }
+</style>
+
 <section class="h-100 gradient-custom">
  
     <div class="container py-5">
@@ -8,19 +14,17 @@
         <div class="col-md-8">
           <div class="card mb-4">
             <div class="card-header py-3">
-              <h5 class="mb-0">Cart - 2</h5>
+              <h5 class="mb-0">Items {{items}}</h5>
             </div>
             <div class="card-body">
               <!-- Single item -->
               
-  
-              
-  
               <!-- Single item -->
               
-              {% for ci in cartitem  %}
+              {% for ci in orditems  %}
               <hr class="my-4" />
               <div class="row">
+                
                 <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                   <!-- Image -->
                   <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
@@ -35,38 +39,30 @@
   
                 <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                   <!-- Data -->
-                  <p><strong>{{ci.product.name}}</strong></p>
+                  <a href="" class="h6 text-dark " style=""><strong>{{ci.product.name}}</strong></a>
                   <p>{{ci.product.Brand}}</p>
                   <p>{{ci.product.Category}}</p>
-  
-                  <a  href="{% url "delete_cartitem" ci.id %}" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
-                    title="Remove item">
-                    <i class="fas fa-trash"></i>
-                  </a>
-                  <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
-                    title="Move to the wish list">
-                    <i class="fas fa-eye"></i>
-                  </button>
+
+                    {% if ci.order.status != "Canceled" %}
+                      <a href=""  class="link link-success">{{ci.order.status}}</a>
+                    {% else %}
+                      <a href=""  class="link link-danger">{{ci.order.status}}</a>
+                    {% endif %}
+                    
+                
                   <!-- Data -->
                 </div>
   
                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                   <!-- Quantity -->
                   <div class="d-flex mb-4" style="max-width: 300px">
-                    <a href="{% url "decrease" ci.id  %}" class="btn btn-primary px-3 me-2"
-                      onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                      <i class="fas fa-minus"></i>
-                    </a>
-  
+                   
                     <div class="form-outline">
-                      <input id="form1" min="0" name="quantity" value="{{ci.qauntity}}" type="number" class="form-control" />
-                      <label class="form-label" for="form1">quantity</label>
+                      <input id="form1" min="0" name="quantity" value="{{ci.quantity}}" type="number" class="form-control"  disabled/>
+                      <label class="form-label" for="form1">Quantities</label>
                     </div>
   
-                    <a href="{% url "increase" ci.id %}" class="btn btn-primary px-3 ms-2"
-                      onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                      <i class="fas fa-plus"></i>
-                    </a>
+                    
                   </div>
                   <!-- Quantity -->
   

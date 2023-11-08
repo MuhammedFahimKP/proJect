@@ -42,16 +42,16 @@ INSTALLED_APPS = [
     
     'django.contrib.sites',
 
-
-
+    'whishlist',
+    'checkouts',
     'shop',
     'log',
     'manager',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-
     'sweetify',
 ]
 

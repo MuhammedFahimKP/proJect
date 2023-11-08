@@ -12,6 +12,8 @@ from django.contrib.auth.tokens import default_token_generator
 from .emailthread import EmailThread 
 from django.http import HttpResponse
 from django.conf import settings
+from checkouts.models import order_status,Order
+
 import sweetify
 
 
@@ -191,3 +193,4 @@ class AddressDeleteView(generic.DeleteView):
 
 
     
+
