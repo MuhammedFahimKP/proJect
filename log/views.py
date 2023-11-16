@@ -177,7 +177,7 @@ class AddressDeleteView(generic.DeleteView):
     model         = Addresses
     success_url   = reverse_lazy('address')
     template_name = "add_delete_conf .html"
-    items_to_delete = []
+    # items_to_delete = []
 
     def delete(self,*args, **kwargs):
 

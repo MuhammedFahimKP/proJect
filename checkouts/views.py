@@ -62,6 +62,7 @@ class CheckoutView(View):
         payment.user = self.request.user
         payment.method = payment_methods[0][0]
         payment.payed_at = None
+        payment.transaction_id = None
         payment.save()
         order  = Order()
         order.grand_total=0.0
@@ -129,9 +130,14 @@ class OrderItemsListView(View):
         orditems = OrderItems.objects.filter(order=ord) if ord else None
 
         items=0
+        total=0
+        tax=0
         for item in orditems:
 
-            items += item.quantity 
+            items += item.quantity
+            total+=item.total_price
+            tax += (item.product.price % 18) * item.quantity 
+
 
 
 
@@ -140,6 +146,8 @@ class OrderItemsListView(View):
             'orditems':orditems,
             'ord':ord,
             'items':items,
+            'total':total,
+            'tax' : tax,
         }
         return render(request,'orders/orderitemsview.html',context)
 

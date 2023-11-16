@@ -1,0 +1,72 @@
+{% extends "manager/index.html" %}
+{% block content %}
+
+<style>
+    a{
+      text-decoration: none !important ;
+    }
+    
+</style>
+
+    
+
+        
+
+
+        <div class="row d-flex  align-items-center justify-content-center  mt-5 " style="">
+
+            <div class="col-sm-8">
+
+                <div class="list-group mt-5 mb-5" >
+                        <div class="list-group-item">All Orders</div>
+                        {% for i in  orders %}
+                        <div  class="list-group-item  list-group-item-action text-light flex-column align-items-start mt-2 mb-2" aria-current="true" style="border-radius:10px;background-color:#5d87ff;">
+                            <div class="d-flex w-100 justify-content-between">
+                                <a href="{% url "order-single-view" i.id  %}" class="mb-1 h3 text-light">{{i.order_id}}</a>
+                                <h5 class="mb-1 text-light">MRP {{i.grand_total}}</h5>
+                                
+                            </div>
+                            <p class="mb-1">{{i.address}}</p>
+                            <div class="d-flex flex-column justify-content-between">
+
+                                <small class="mb-2">{{i.payment.method}}</small> 
+                                <small class="mb-2">{{i.status}}</small> 
+                                <small class="mb-2">{{i.created|timesince}}</small> 
+                                <small class="mb-2">Ordered By {{i.user.first_name}}</small> 
+                                {% if i.status == 'Shipping' %}
+                                    <small class="mb-2">Expected {{i.expected}}</small> 
+                                {% endif %}
+                                {% if i.status != 'Canceled' %}
+                                    <a href="{% url "order-cancel" i.id %}" class="btn btn-danger" style="background-color:#f73c3f;">
+                                        cancel
+                                    </a>
+                                {% else %} 
+                                    <button class="btn btn-danger disabled" style="background-color:#f73c3f;">
+                                        canceled
+                                    </button>
+
+                                {% endif %}
+                                
+                                
+                               
+                                
+                                
+                            </div>
+
+                            
+                            
+                            
+                        </div>
+                        
+                        {% endfor %}
+                      
+                </div>
+
+            </div>    
+
+        </div>
+
+    
+    
+{% endblock content %}
+

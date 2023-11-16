@@ -112,7 +112,24 @@ class CartItem(models.Model):
        def total_price(self):
            return  self.product.price * self.qauntity
        
+
+class Review(models.Model):
+    user    = models.ForeignKey(MyUser,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    subject = models.CharField(max_length=100)
+    review  = models.TextField(max_length=500)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
         
+    def __str__(self) -> str:
+        return self.subject    
+    
+
+    class Meta:
+        ordering = ['-created']
+
+
            
 
             

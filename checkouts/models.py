@@ -23,6 +23,7 @@ order_status = [
 class Payment(models.Model):
       user = models.ForeignKey(MyUser,on_delete=models.CASCADE)
       method = models.CharField(choices=payment_methods,max_length=50,null=True,default=None)
+      transaction_id = models.CharField(max_length=50,null=True)
       amount_payed = models.DecimalField(default=0.0,decimal_places=2,max_digits=15)
       payed_at = models.DateTimeField(null=True,blank=True)
 

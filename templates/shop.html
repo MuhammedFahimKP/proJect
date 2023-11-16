@@ -55,8 +55,8 @@
                                 <img class="card-img" src="{{p.img.url}}">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href=""><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white" href="{% url 'add_to_whishlist' p.slug %}"><i class="far fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="{% url "shop-single" p.slug %}"><i class="far fa-eye"></i></a></li>
                                         <li><a class="btn btn-success text-white mt-2" href="{% url "addtocart" p.slug %}"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>

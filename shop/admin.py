@@ -5,6 +5,7 @@ from .models import (
     Product,
     Cart,
     CartItem,
+    Review,
 )
 
 
@@ -28,6 +29,7 @@ admin.site.register(Product,ProductAdmin)
 admin.site.register(Brand,BrandAdmin)
 admin.site.register(Cart)
 admin.site.register(CartItem)
+admin.site.register(Review)
 
 
 

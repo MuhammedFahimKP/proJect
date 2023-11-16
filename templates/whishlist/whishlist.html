@@ -1,12 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-<style>
-  a{
-    text-decoration: none !important ;
-  }
-</style>
-
 <section class="h-100 gradient-custom">
  
     <div class="container py-5">
@@ -14,17 +8,19 @@
         <div class="col-md-8">
           <div class="card mb-4">
             <div class="card-header py-3">
-              <h5 class="mb-0">Items {{items}}</h5>
+              <h5 class="mb-0">Cart - 2</h5>
             </div>
             <div class="card-body">
               <!-- Single item -->
               
+  
+              
+  
               <!-- Single item -->
               
-              {% for ci in orditems  %}
+              {% for ci in whishlistitems  %}
               <hr class="my-4" />
               <div class="row">
-                
                 <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                   <!-- Image -->
                   <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
@@ -39,36 +35,27 @@
   
                 <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                   <!-- Data -->
-                  <a href="" class="h6 text-dark " style=""><strong>{{ci.product.name}}</strong></a>
+                  <p><strong>{{ci.product.name}}</strong></p>
                   <p>{{ci.product.Brand}}</p>
                   <p>{{ci.product.Category}}</p>
-
-                    {% if ci.order.status != "Canceled" %}
-                      <a href=""  class="link link-success">{{ci.order.status}}</a>
-                    {% else %}
-                      <a href=""  class="link link-danger">{{ci.order.status}}</a>
-                    {% endif %}
-                    
-                
+  
+                  <a  href="{% url "delete_cartitem" ci.id %}" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+                    title="Remove item">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                  <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
+                    title="Move to the wish list">
+                    <i class="fas fa-eye"></i>
+                  </button>
                   <!-- Data -->
                 </div>
   
                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                  <!-- Quantity -->
-                  <div class="d-flex mb-4" style="max-width: 300px">
-                   
-                    <div class="form-outline">
-                      <input id="form1" min="0" name="quantity" value="{{ci.quantity}}" type="number" class="form-control"  disabled/>
-                      <label class="form-label" for="form1">Quantities</label>
-                    </div>
-  
-                    
-                  </div>
-                  <!-- Quantity -->
+                  
   
                   <!-- Price -->
                   <p class="text-start text-md-center">
-                    <strong>{{ci.total_price}}</strong>
+                    <strong>{{ci.product.price}}</strong>
                   </p>
                   <!-- Price -->
                 </div>
@@ -77,20 +64,12 @@
               <!-- Single item -->
             </div>
           </div>
-          {% if ord.status == 'Shipping' %}
-            <div class="card mb-4">
-              <div class="card-body">
-              
-
-
-                <p><strong>Expected shipping delivery</strong></p>
-                <p class="mb-0">{{ord.expected}}</p>
-
-
-              
-              </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <p><strong>Expected shipping delivery</strong></p>
+              <p class="mb-0">12.10.2020 - 14.10.2020</p>
             </div>
-         {% endif %}
+          </div>
           <div class="card mb-4 mb-lg-0">
             <div class="card-body">
               <p><strong>We accept</strong></p>
@@ -103,11 +82,13 @@
               <img class="me-2" width="45px"
                 src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
                 alt="Mastercard" />
-              
+              <img class="me-2" width="45px"
+                src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.webp"
+                alt="PayPal acceptance mark" />
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        {% comment %} <div class="col-md-4">
           <div class="card mb-4">
             <div class="card-header py-3">
               <h5 class="mb-0">Summary</h5>
@@ -120,27 +101,28 @@
                   <span>{{items}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                  Payment
-                  <span>{{ord.payment.method}}</span> 
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                  Tax
-                  <span>RS {{tax}}</span>
+                  Shipping
+                  <span>Gratis</span>
                 </li>
                 <li
                   class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                   <div>
                     <strong>Total amount</strong>
-        
+                    <strong>
+                       <p class="mb-0">(including VAT)</p> 
+                    </strong>
                   </div>
-                  <span><strong>{{ord.grand_total}}</strong></span>
+                  <span><strong>{{total}}</strong></span>
                 </li>
               </ul>
-
+  
+              <a href="{% url "checkout" %}" class="btn btn-primary btn-lg btn-block">
+                Go to checkout
+              </a>
             </div>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
     </div>
   </section>
 {% endblock content %}

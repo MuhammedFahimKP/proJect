@@ -1,6 +1,15 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.views import View
-from .models import Category,Product,Cart,CartItem
+from checkouts.models import Order,OrderItems
+from .models import( 
+      Category,
+      Product,
+      Cart,
+      CartItem,
+      Review
+)
+
+from .forms import ProductReviewForm
 import sweetify
 # Create your views here.
 
@@ -32,6 +41,71 @@ class ShopView(View):
     
 
 
+class SingleItemView(View):
+      
+      def get(self,request,slug):
+            
+            form = ProductReviewForm()
+
+            try:
+                  ord = Order.objects.filter(user=self.request.user)
+                 
+            except:
+                  ord = None      
+
+
+            k=False      
+
+
+            try: 
+                  product = Product.objects.get(slug=slug)
+            except:
+                  product = None
+
+            if product:
+
+                  if ord:
+
+                        for order in ord:
+                             
+                          if OrderItems.objects.filter(order=order,product=product).exists():
+                                k=True
+                                break
+                  
+                  review = Review.objects.filter(product=product)
+                  context = {
+                        'product':product,
+                        'reviews':review,
+                        'form': form,
+                        'isOrdered':k
+                  }
+                  return render(self.request,'shop/singleitem.html',context)
+            else:
+                  return redirect(self.request.META.get('HTTP_REFERER')) 
+        
+      def post(self,request,slug):
+            
+            form = ProductReviewForm(self.request.POST)
+            product = Product.objects.get(slug=slug)
+            
+            if form.is_valid:
+                  
+                  form.instance.user = self.request.user
+                  form.instance.product = product
+                  form.save()
+                  sweetify.sweetalert(request,icon="success",text=f"review added",title="Success",timer='3000',position='bottom-end',toast=True)
+                  return redirect(self.request.META.get('HTTP_REFERER')) 
+
+                
+                  
+                  
+
+                                 
+            
+             
+
+# def shopsingle(request):
+#       return render(request,'shop/singleitem.html')             
 
 class AddToCart(View):
 
@@ -102,6 +176,12 @@ class IncreaseCart(View):
             cartitem.qauntity = cartitem.qauntity + 1
             cartitem.save() 
             return redirect("cart")
+        
+
+            
+
+
+
            
       
 
