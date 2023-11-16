@@ -6,6 +6,9 @@
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 <style>
+    a{
+        text-decoration: none !important ;
+      }
     body{
 
         background-color: #f1f3f7;
@@ -467,9 +470,9 @@
                                                             <input type="radio" name="address" id="info-address2" class="card-radio-input">
                                                             <div class="card-radio text-truncate p-3">
                                                                 <div class="d-flex justify-content-center align-items-center">
-                                                                    <h1 class="h1">
+                                                                    <a href="{% url "create-address" %}" class="h1">
                                                                         +
-                                                                    </h1>
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         
