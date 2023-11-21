@@ -27,6 +27,8 @@ class AddTOWhishlistlistView(View):
                         wlitem.save()
                 
                 return redirect(self.request.META.get('HTTP_REFERER'))
+           else:
+                  return redirect(self.request.META.get('HTTP_REFERER'))
            
 
 class WhishListListView(View):

@@ -98,11 +98,17 @@ class CheckoutView(View):
 class OrderListView(View):
 
     def get(self,request):
-        order = Order.objects.filter(user=self.request.user)
-        context={
-            'order':order    
-        }
-        return render(self.request,"log\orderview.html",context)
+        if request.user.is_authenticated:
+            order = Order.objects.filter(user=self.request.user)
+            context={
+                'order':order    
+
+            }
+            return render(self.request,"log\orderview.html",context)
+        else:
+            return redirect('/')
+        
+        
 
 
 
@@ -110,11 +116,14 @@ class OrderCancelView(View):
 
     def get(self,request,pk):
 
-        ord = Order.objects.get(id=pk)
-        ord.status = order_status[1][0]
-        ord.save()
-        sweetify.sweetalert(self.request,icon="success",text=f"order canceled",title="Order",timer='3000',position='top-end',toast=True)
-        return redirect("orders")
+        if request.user.is_authenticated:
+            ord = Order.objects.get(id=pk)
+            ord.status = order_status[1][0]
+            ord.save()
+            sweetify.sweetalert(self.request,icon="success",text=f"order canceled",title="Order",timer='3000',position='top-end',toast=True)
+            return redirect("orders")
+        else:
+            return redirect('/')   
 
 
 class OrderItemsListView(View):
@@ -122,33 +131,41 @@ class OrderItemsListView(View):
 
     def get(self,request,pk):
 
-        try:
-            ord = Order.objects.get(id=pk,user=request.user)
-        except:
-            ord = None
+        if request.user.is_authenticated:
+              try:
+                ord = Order.objects.get(id=pk,user=request.user)
+              except:
+                ord = None
 
-        orditems = OrderItems.objects.filter(order=ord) if ord else None
+              orditems = OrderItems.objects.filter(order=ord) if ord else None
 
-        items=0
-        total=0
-        tax=0
-        for item in orditems:
+              items=0
+              total=0
+              tax=0
+              for item in orditems:
 
-            items += item.quantity
-            total+=item.total_price
-            tax += (item.product.price % 18) * item.quantity 
+                    items += item.quantity
+                    total+=item.total_price
+                    tax += (item.product.price % 18) * item.quantity 
+              context = {
+                'orditems':orditems,
+                'ord':ord,
+                'items':items,
+                'total':total,
+                'tax' : tax,
+            }    
+              return render(request,'orders/orderitemsview.html',context)  
+        else:
+            return redirect('/')
 
 
 
 
 
-        context = {
-            'orditems':orditems,
-            'ord':ord,
-            'items':items,
-            'total':total,
-            'tax' : tax,
-        }
-        return render(request,'orders/orderitemsview.html',context)
+        
+       
+
+
+      
 
 

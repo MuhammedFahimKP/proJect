@@ -138,7 +138,10 @@ class SignoutView(View):
 class AccountView(View):
 
     def get(self,request):
-        return render(request,'log/account.html')
+        if request.user.is_authenticated:
+            return render(request,'log/account.html')
+        else:
+            return redirect('/')
 
    
 

@@ -126,8 +126,14 @@ class AddToCart(View):
                         cartitem.save()
                 except:
                         cartitem = CartItem.objects.create(product=product,cart=cart,qauntity=1)         
-                        cartitem.save()        
+                        cartitem.save()    
 
+                return redirect(self.request.META.get('HTTP_REFRER'))          
+
+
+           else:
+                 return redirect(self.request.META.get('HTTP_REFERER')) 
+                      
            return  redirect("shop")  
       
 
@@ -193,8 +199,10 @@ class DecreaseCart(View):
             if  cartitem.qauntity > 1:
                   cartitem.qauntity = cartitem.qauntity -1
                   cartitem.save()
+
                   
             else:
+                cartitem.delete()
                 sweetify.sweetalert(request,icon="error",text=f"quantity must be 1",title="failed",timer='3000',position='top-end',toast=True)     
             return redirect('cart')               
       

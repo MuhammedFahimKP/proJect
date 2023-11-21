@@ -31,7 +31,7 @@
 
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
+                            <a class="nav-link" href="{% url "home" %}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About</a>
@@ -58,7 +58,7 @@
                         {% if request.user.is_authenticated %}
                             <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{cart_count}}</span>
                         {% else %}
-                            <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">0</span>
+                            <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
                         {% endif %}
                     </a>
                     
